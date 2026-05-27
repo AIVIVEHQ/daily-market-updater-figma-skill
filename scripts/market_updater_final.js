@@ -251,14 +251,14 @@ async function main() {
 
     // 🏆 INJECTED MARKET DATA (For 100% Reliability in Figma - Apr 20, 2026 Update)
     const INJECTED_MARKET_DATA = [
-        { symbol: "BTC", name: "Bitcoin", price: 75261.00, change: -0.85, vol: 38600000000, image: "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png" },
-        { symbol: "ETH", name: "Ethereum", price: 2319.82, change: -0.90, vol: 17220000000, image: "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png" },
+        { symbol: "BTC", name: "Bitcoin", price: 75793.00, change: -1.27, vol: 38600000000, image: "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png" },
+        { symbol: "ETH", name: "Ethereum", price: 2073.00, change: -1.13, vol: 17220000000, image: "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png" },
         { symbol: "BNB", name: "BNB", price: 601.82, change: 1.54, vol: 3050000000, image: "https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png" },
         { symbol: "SOL", name: "Solana", price: 137.95, change: 3.82, vol: 4080000000, image: "https://coin-images.coingecko.com/coins/images/4128/large/solana.png" },
         { symbol: "XRP", name: "XRP", price: 0.589, change: 1.42, vol: 1290000000, image: "https://coin-images.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png" },
-        { symbol: "SIREN", name: "Siren", price: 0.7012, change: 7.05, vol: 10000000, image: "https://coin-images.coingecko.com/coins/images/31804/large/siren.png" },
-        { symbol: "CC", name: "Canton", price: 0.1545, change: 4.76, vol: 10000000, image: "https://coin-images.coingecko.com/coins/images/24647/large/provenance.png" }, // Reusing provenace path as placeholder if CC logo is distinct
-        { symbol: "SKY", name: "Sky", price: 0.0800, change: 4.43, vol: 20000000, image: "https://coin-images.coingecko.com/coins/images/486/large/zcash.png" } // Reusing as placeholder
+        { symbol: "REQ", name: "Request", price: 0.091, change: 36.20, vol: 10000000, image: "https://coin-images.coingecko.com/coins/images/1188/large/Request_Network_logo_symbol_green.png" },
+        { symbol: "OSMO", name: "Osmosis", price: 1.2, change: 27.29, vol: 10000000, image: "https://coin-images.coingecko.com/coins/images/16724/large/osmo.png" },
+        { symbol: "IO", name: "io.net", price: 3.5, change: 17.01, vol: 20000000, image: "https://coin-images.coingecko.com/coins/images/36253/large/io_net_logo.png" }
     ];
 
     let allCoins = [];
@@ -275,6 +275,13 @@ async function main() {
         console.log("⚠️ Fetch failed or Rate Limited. Using INJECTED_MARKET_DATA.");
         allCoins = INJECTED_MARKET_DATA;
     }
+
+    // Ensure our injected targets (especially gainers not in top 250) are not lost
+    INJECTED_MARKET_DATA.forEach(ic => {
+        if (!allCoins.find(c => c.symbol.toUpperCase() === ic.symbol.toUpperCase())) {
+            allCoins.push(ic);
+        }
+    });
 
     allCoins.forEach(c => {
         const sym = c.symbol.toUpperCase();
@@ -358,24 +365,22 @@ async function main() {
 
     // 5. News
     const enNews = [
-        "Bitcoin ETF outflows continue as the Senate Banking Committee advances the Digital Asset Market CLARITY Act to formalize crypto regulations.",
-        "Binance launches its OMS Toolkit, providing deeper analytics and integration for institutional crypto and traditional finance clients.",
-        "The FDIC proposes the GENIUS Act, requiring federally supervised stablecoin issuers to comply with strict AML and sanctions standards.",
-        "Tether partners with the Georgian government to launch GEL₮, a stablecoin pegged to the national currency for faster settlements.",
-        "Hyperliquid (HYPE) reaches new record highs above $63 as market leadership rotates into decentralized perpetual exchanges and privacy-focused assets."
+        "Pro-crypto super PAC Fairshake spends $10.5 million to support challenger Menefee in Texas, highlighting growing political influence.",
+        "President Trump pledges to keep the U.S. as the 'Crypto Capital of the World' and emphasizes CFTC authority over prediction markets.",
+        "Decentralized physical infrastructure network io.net introduces a new staking and tiering security system to combat worker spoofing.",
+        "XMAQUINA ($DEUS) completes its Token Generation Event, focusing on physical AI and tokenized robotics equity."
     ];
     const cnNews = [
-        "随着参议院银行委员会推进《数字资产市场清晰度法案》以规范加密货币监管，比特币 ETF 资金持续流出。",
-        "币安推出 OMS 工具包，为机构级加密货币和传统金融客户提供更深度的分析与集成能力。",
-        "FDIC 提议出台《GENIUS 法案》，要求受联邦监管的稳定币发行商遵守严格的反洗钱和制裁标准。",
-        "Tether 与格鲁吉亚政府合作推出与该国货币挂钩的稳定币 GEL₮，旨在加快结算速度。",
-        "随着市场资金向去中心化永续合约交易所和隐私相关资产轮动，Hyperliquid (HYPE) 创下突破 63 美元的历史新高。"
+        "亲加密货币的超级政治行动委员会 Fairshake 斥资 1050 万美元支持德克萨斯州挑战者 Menefee，突显了其日益增长的政治影响力。",
+        "特朗普承诺保持美国“世界加密之都”的地位，并强调商品期货交易委员会（CFTC）对预测市场的管辖权。",
+        "去中心化物理基础设施网络 io.net 推出新的质押与分级安全系统，以打击恶意节点欺骗。",
+        "XMAQUINA ($DEUS) 完成代币生成活动（TGE），聚焦于物理人工智能和代币化的机器人股权。"
     ];
     await setBullets("57:963", enNews);
     await setBullets("57:1067", cnNews);
 
     // 6. Highlights (ENHANCED DYNAMIC DESCRIPTIONS - Evening Refresh)
-    const highlightSymbols = ["BTC", "ETH", "DEXE", "RENDER", "STABLE"];
+    const highlightSymbols = ["BTC", "ETH", "REQ", "OSMO", "IO"];
     const highlightTickers = highlightSymbols.map(s => "$" + s);
 
     const enHighlights = [];
@@ -384,24 +389,24 @@ async function main() {
     // Professional Insights for Blue Chips and Today's Top Gainers
     const blueChipInsights = {
         "BTC": {
-            en: "Bitcoin stabilizes above $77,000 as investors monitor geopolitical developments and institutional ETF flows ahead of upcoming U.S. inflation reports.",
-            cn: "在即将公布的美国通胀数据前，投资者密切关注地缘政治动态与机构 ETF 资金流向，比特币在 77,000 美元上方企稳。"
+            en: "Bitcoin experiences a minor pullback below $76,000 as analysts observe a 'death cross' formation between STH-RP and TMMP indicators.",
+            cn: "在分析师观察到 STH-RP 和 TMMP 指标形成“死亡交叉”之际，比特币小幅回调跌破 76,000 美元。"
         },
         "ETH": {
-            en: "Ethereum experiences downward pressure below $2,100 amid negative spot ETF flows and recent treasury management actions by the Ethereum Foundation.",
-            cn: "受现货 ETF 资金流出及以太坊基金会近期资金管理操作的影响，以太坊面临跌破 2,100 美元的下行压力。"
+            en: "Ethereum trades lower around $2,073 amid a broader market consolidation, reflecting cautious sentiment across altcoins.",
+            cn: "在整体市场盘整和山寨币情绪谨慎的背景下，以太坊价格小幅回落至 2,073 美元附近。"
         },
-        "DEXE": {
-            en: "DeXe surges with immense volume as risk-on market sentiment drives capital toward its DAO governance and AI-focused infrastructure solutions.",
-            cn: "在风险偏好回暖的市场情绪推动下，资金涌入其 DAO 治理与 AI 基础设施解决方案，DeXe 伴随巨量成交录得飙升。"
+        "REQ": {
+            en: "Request Network sees extreme volatility and surges over 36% following technical oversold signals, attracting contrarian buying interest.",
+            cn: "在出现技术超卖信号后，Request Network 吸引了逆向买盘，伴随极高波动性逆市飙升超 36%。"
         },
-        "RENDER": {
-            en: "Render sees significant momentum fueled by the broader AI narrative and upcoming network optimizations for concurrent AI inference jobs.",
-            cn: "受广泛的 AI 叙事及即将推出支持并发 AI 推理任务的网络优化所推动，Render 展现出强劲的上涨动能。"
+        "OSMO": {
+            en: "Osmosis jumps over 27% driven by renewed community optimism surrounding a revised 'COSMOSIS' merger proposal aimed at funding token swaps.",
+            cn: "受社区对旨在资助代币互换的“COSMOSIS”修改版合并提案的乐观情绪推动，Osmosis 大涨超 27%。"
         },
-        "STABLE": {
-            en: "The stablecoin sector garners massive institutional attention following the FDIC's proposed GENIUS Act, which aims to integrate stablecoins into regulated banking.",
-            cn: "随着 FDIC 提出旨在将稳定币纳入受监管银行体系的《GENIUS 法案》，稳定币赛道吸引了大量的机构关注。"
+        "IO": {
+            en: "io.net rallies 17% ahead of its upcoming staking security system launch, underscoring growing demand for decentralized GPU computing power.",
+            cn: "io.net 大涨 17%，即将推出的质押安全系统凸显了市场对去中心化 GPU 算力日益增长的需求。"
         }
     };
 
