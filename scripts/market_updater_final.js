@@ -368,13 +368,15 @@ async function main() {
         "Pro-crypto super PAC Fairshake spends $10.5 million to support challenger Menefee in Texas, highlighting growing political influence.",
         "President Trump pledges to keep the U.S. as the 'Crypto Capital of the World' and emphasizes CFTC authority over prediction markets.",
         "Decentralized physical infrastructure network io.net introduces a new staking and tiering security system to combat worker spoofing.",
-        "XMAQUINA ($DEUS) completes its Token Generation Event, focusing on physical AI and tokenized robotics equity."
+        "XMAQUINA ($DEUS) completes its Token Generation Event, focusing on physical AI and tokenized robotics equity.",
+        "Binance announces the termination of deposit and withdrawal services for multiple token networks including DODO, HFT, SYN, and TLM starting June 3."
     ];
     const cnNews = [
         "亲加密货币的超级政治行动委员会 Fairshake 斥资 1050 万美元支持德克萨斯州挑战者 Menefee，突显了其日益增长的政治影响力。",
         "特朗普承诺保持美国“世界加密之都”的地位，并强调商品期货交易委员会（CFTC）对预测市场的管辖权。",
         "去中心化物理基础设施网络 io.net 推出新的质押与分级安全系统，以打击恶意节点欺骗。",
-        "XMAQUINA ($DEUS) 完成代币生成活动（TGE），聚焦于物理人工智能和代币化的机器人股权。"
+        "XMAQUINA ($DEUS) 完成代币生成活动（TGE），聚焦于物理人工智能和代币化的机器人股权。",
+        "币安宣布将从 6 月 3 日起停止支持包括 DODO、HFT、SYN 和 TLM 在内的多个代币网络的充值和提现服务。"
     ];
     await setBullets("57:963", enNews);
     await setBullets("57:1067", cnNews);
